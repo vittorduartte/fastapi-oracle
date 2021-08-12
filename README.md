@@ -27,7 +27,7 @@ version: "3.9"
 
 services:
   fastapi:
-    build: .
+    image: "vittorduartte/fastapi-oracle:latest"
     command: uvicorn main:app --host 0.0.0.0 --port 8000
     volumes:
       - ./:/src/app/
@@ -56,7 +56,7 @@ version: "3.9"
 
 services:
   fastapi:
-    build: .
+    image: "vittorduartte/fastapi-oracle:latest"
     command: uvicorn main:app --reload --host 0.0.0.0 --port 8000
     volumes:
       - ./:/src/app/
