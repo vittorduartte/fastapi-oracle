@@ -1,0 +1,5 @@
+# Project example files
+delete-env.sh
+docker-compose.yml
+main.py
+api
