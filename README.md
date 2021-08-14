@@ -64,6 +64,38 @@ services:
       - 8000:8000
 ```
 
+5. Template do projeto:
+```shell
+.
+├── api
+│   ├── app.py
+│   └── __init__.py
+├── docker-compose.yml
+└── main.py
+```
+
+6. Exemplo do arquivo **api/app.py**:
+```python
+from fastapi import FastAPI
+
+
+def init_app():
+  app = FastAPI()
+
+  @app.get("/")
+  async def root():
+      return {"message": "Hello World"}
+
+  return app
+```
+
+7. Exemplo do arquivo **main.py**:
+```python
+from api import app
+
+app = init_app()
+```
+
 ## 💻 Outras dependências:
 
 A imagem já traz as dependências necessárias para o desenvolvimento de aplicação, incluindo SQLAlchemy.
