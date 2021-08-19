@@ -1,15 +1,18 @@
-FROM python:buster
+FROM python:3.7
 LABEL org.opencontainers.image.authors="mateusriograndense@gmail.com"
 
-# Coping instant client zip
-RUN curl --output instantclient-basic-linux.x64-19.12.0.0.0dbru.zip \  
-https://download.oracle.com/otn_software/linux/instantclient/1912000/instantclient-basic-linux.x64-19.12.0.0.0dbru.zip
+# Installing tools
+RUN apt-get update \
+   && apt-get -y install libaio1
 
-# Installing oracle instant client
+# Installing oracle instant client zip
 RUN mkdir /opt/oracle    
+COPY instantclient-basic-linux.x64-19.12.0.0.0dbru.zip ./
 RUN unzip instantclient-basic-linux.x64-19.12.0.0.0dbru.zip
 RUN mv instantclient_19_12 /opt/oracle
 RUN rm *.zip
+RUN echo /opt/oracle/instantclient_19_12* > /etc/ld.so.conf.d/oracle-instantclient.conf && ldconfig
+
 
 # Defining your work directory
 WORKDIR usr/src/app
